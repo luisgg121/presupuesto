@@ -10,16 +10,19 @@ const egresos = [
 
 let totalIngresos = 0;
 for (let ingreso of ingresos) {
-  totalIngresos += ingreso.valor;
+    totalIngresos += ingreso.valor;
 }
 
 let totalEgresos = 0;
 for (let egreso of egresos) {
-  totalEgresos += egreso.valor;
+    totalEgresos += egreso.valor;
 }
 
-console.log(totalIngresos); 
-console.log(totalEgresos); 
+let porcentajeEgreso = totalIngresos / (totalEgresos + totalIngresos);
+
+console.log(totalIngresos);
+console.log(totalEgresos);
+console.log(porcentajeEgreso);
 
 /* var egresos = [{
     concepto: "Renta",
@@ -39,11 +42,18 @@ var ingresos = [{
 
 */
 
+function cargarApp() {
+    cargarCabecero();
+}
 
 function cargarCabecero() {
-    const presupuesto = totalIngresos() - totalEgresos();
-    const porcentajeEgreso = totalEgresos() / totalIngresos();
-    document.getElementById("presupuesto").innerHTML=formatoMoneda(presupuesto);
+    const presupuesto = totalIngresos - totalEgresos;
+    const porcentajeEgreso = totalEgresos / (totalIngresos + totalEgresos);
+    document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
+    document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
+    document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos);
+    document.getElementById("egresos").innerHTML = formatoMoneda(totalEgresos);
+
     // console.log(presupuesto);
     // console.log(porcentajeEgreso);
     // console.log(totalIngresos());
@@ -75,11 +85,26 @@ const formatoPorcentaje = (valor) => {
     return valor.toLocaleString('es-MX', { style: 'percent', minimumFractionDigits: 2 });
 };
 
+// e función:
+// • Nómbrala cargarIngresos.
+// • Debe ser una función tipo flecha.
+// • Declara la variable vacía ingresosHTML.
+// • Recorre el arreglo ingresos con un ciclo for of.
+// • En el cuerpo del ciclo, concatena el resultado de una función llamada
+// crearIngresoHTML y pásale como parámetro cada uno de los elementos del arreglo
+// ingreso.
+// • Una vez que termine el ciclo, recupera el elemento lista-ingresos a través de su id o
+// asígnale el contenido de la variable ingresosHTML
+const cargarIngresos = () =>   {
+    let ingresosHTML=[];
+    for (ingreso of ingresos) {
+        ingresosHTML = ingresosHTML + crearIngresoHTML(ingreso);
+    }
+    document.getElementById("lista-ingresos")= ingresosHTML;
 
+};
 
+const crearIngresoHTML = (ingreso) => {
+    let ingresoHTML;
 
-
-
-
-
-
+}
