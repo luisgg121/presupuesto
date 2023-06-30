@@ -1,7 +1,10 @@
 const ingresos = [
-    new Ingreso('Salario', 2000),
+    new Ingreso("Salario", 2000),
     new Ingreso('Venta auto', 5000)
 ];
+
+console.log(ingresos[0].descripcion);
+console.log(ingresos[1].descripcion);
 
 const egresos = [
     new Egreso('Renta', 4000),
@@ -18,7 +21,7 @@ for (let egreso of egresos) {
     totalEgresos += egreso.valor;
 }
 
-let porcentajeEgreso = totalIngresos / (totalEgresos + totalIngresos);
+let porcentajeEgreso = totalEgresos / totalIngresos;
 
 console.log(totalIngresos);
 console.log(totalEgresos);
@@ -60,6 +63,7 @@ function cargarCabecero() {
     // console.log(totalEgresos());
 };
 
+
 /*
 const totalIngresos = (ingresos) => {
     let totalIngreso = 0;
@@ -95,16 +99,90 @@ const formatoPorcentaje = (valor) => {
 // ingreso.
 // • Una vez que termine el ciclo, recupera el elemento lista-ingresos a través de su id o
 // asígnale el contenido de la variable ingresosHTML
-const cargarIngresos = () =>   {
-    let ingresosHTML=[];
-    for (ingreso of ingresos) {
-        ingresosHTML = ingresosHTML + crearIngresoHTML(ingreso);
-    }
-    document.getElementById("lista-ingresos")= ingresosHTML;
 
+const cargarIngresos = () => {
+    let ingresosHTML = "";
+    for (const ingreso of ingresos) {
+        const ingresoHTML = crearIngresoHTML(ingreso);
+        ingresosHTML += ingresoHTML;
+    }
+    console.log(ingresosHTML);
+    document.getElementById("lista-ingresos").innerHTML = ingresosHTML;
 };
 
-const crearIngresoHTML = (ingreso) => {
-    let ingresoHTML;
+const cargarEgresos = () => {
+    let egresosHTML = "";
+    for (const egreso of egresos) {
+        const egresoHTML = crearEgresoHTML(egreso);
+        egresosHTML += egresoHTML;
+    }
+    console.log(egresosHTML);
+    document.getElementById("lista-egresos").innerHTML = egresosHTML;
+};
 
-}
+// En lugar de escribir una cadena en el div elemento-descripcion, toma el
+// contenido de ingreso.descripcion
+// const crearIngresoHTML = (ingreso) => {
+//     let ingresoHTML=document.getElementById("lista-ingresos").innerHTML();
+
+//     document.getElementsByClassName("elemento-descripcion");
+
+//     return ingresoHTML;
+// }
+
+// let ingresoHTML = `
+//   <div>
+//     <div>${ingreso.descripcion}</div>
+//     <div>${formatoMoneda(ingreso.valor)}</div>
+//     <ion-icon name="close-circle-outline" onclick="eliminarIngreso(${ingreso.id})"></ion-icon>
+//   </div>
+// `;
+
+const crearIngresoHTML = (ingreso) => {
+    console.log(ingreso.descripcion + " " + ingreso.valor);
+    let ingresoHTML = `
+      <div class="elemento limpiarEstilos">
+        <div class="elemento-descripcion">${ingreso.descripcion}</div>
+        <div class="derecha limpiarEstilos">
+          <div class="elemento-valor">+ ${formatoMoneda(ingreso.valor)}</div>
+          <div class="elemento-eliminar">
+            <button class="elemento-eliminar--btn">
+             <ion-button>
+              <ion-icon name="close-circle-outline"
+              onclick='eliminarIngreso(${ingreso.id})'></ion-icon>
+              </ion-button>
+             </button>
+          </div>
+        </div>
+      </div>
+    `;
+    console.log(ingresoHTML);
+    return ingresoHTML;
+};
+
+const crearEgresoHTML = (egreso) => {
+    console.log(egreso.descripcion + " " + egreso.valor);
+    let egresoHTML = `
+      <div class="elemento limpiarEstilos">
+        <div class="elemento-descripcion">${egreso.descripcion}</div>
+        <div class="derecha limpiarEstilos">
+          <div class="elemento-valor">- ${formatoMoneda(egreso.valor)}</div>
+          <div class="elemento_porcentaje">${formatoPorcentaje(porcentajeEgreso)}</div>
+          <div class="elemento-eliminar">
+            <button class="elemento-eliminar--btn">
+             <ion-button>
+              <ion-icon name="close-circle-outline"
+              onclick='eliminarEgreso(${egreso.id})'></ion-icon>
+              </ion-button>
+             </button>
+          </div>
+        </div>
+      </div>
+    `;
+    console.log(egresoHTML);
+    return egresoHTML;
+};
+
+cargarIngresos();
+
+cargarEgresos();
