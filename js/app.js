@@ -106,8 +106,8 @@ const cargarIngresos = () => {
         const ingresoHTML = crearIngresoHTML(ingreso);
         ingresosHTML += ingresoHTML;
     }
-    console.log(ingresosHTML);
-    document.getElementById("lista-ingresos").innerHTML = ingresosHTML;
+    document.getElementById('lista-ingresos').innerHTML = ingresosHTML;
+    
 };
 
 const cargarEgresos = () => {
