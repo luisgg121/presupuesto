@@ -107,7 +107,7 @@ const cargarIngresos = () => {
         ingresosHTML += ingresoHTML;
     }
     document.getElementById('lista-ingresos').innerHTML = ingresosHTML;
-    
+
 };
 
 const cargarEgresos = () => {
@@ -148,8 +148,7 @@ const crearIngresoHTML = (ingreso) => {
           <div class="elemento-eliminar">
             <button class="elemento-eliminar--btn">
              <ion-button>
-              <ion-icon name="close-circle-outline"
-              onclick='eliminarIngreso(${ingreso.id})'></ion-icon>
+              <ion-icon name="close-circle-outline" onclick='eliminarIngreso(${ingreso.id})'></ion-icon>
               </ion-button>
              </button>
           </div>
@@ -171,8 +170,7 @@ const crearEgresoHTML = (egreso) => {
           <div class="elemento-eliminar">
             <button class="elemento-eliminar--btn">
              <ion-button>
-              <ion-icon name="close-circle-outline"
-              onclick='eliminarEgreso(${egreso.id})'></ion-icon>
+              <ion-icon name="close-circle-outline" aria-hidden="true" onclick='eliminarEgreso(${egreso.id})'></ion-icon>
               </ion-button>
              </button>
           </div>
@@ -183,6 +181,50 @@ const crearEgresoHTML = (egreso) => {
     return egresoHTML;
 };
 
-cargarIngresos();
+const eliminarIngreso = (id) => {
+    const indiceEliminar = egresos.findIndex((ingreso) => ingreso.id === id);
+    ingresos.splice(indiceEliminar, 1);
+    totalIngresos = 0;
+    for (let ingreso of ingresos) {
+        totalIngresos += ingreso.valor;
+    }
+    console.log("Total de ingresos = " + totalIngresos);
+    cargarCabecero();
+    cargarIngresos();
+};
 
+const eliminarEgreso = (id) => {
+    const indiceEliminar = egresos.findIndex((egreso) => egreso.id === id);
+    egresos.splice(indiceEliminar, 1);
+    totalEgresos = 0;
+    for (let egreso of egresos) {
+        totalEgresos += egreso.valor;
+    }
+    console.log("Total de egresos = " + totalEgresos);
+    cargarCabecero();
+    cargarEgresos();
+};
+
+const agregarDato = () => {
+    console.log="ENTRÉ A AGREGAR DATO";
+    const forma = document.getElementById('forma');
+    const tipo = forma.tipo.value;
+    const descripcion = forma.descripcion.value;
+    const valor = forma.importe.value;
+    console.log = "Tipo = " + forma.tipo.value + "Descripción = " + forma.descripcion.value + forma.importe.value;
+
+    if (descripcion !== '' && valor !== '') {
+        if (tipo === 'ingreso') {
+            ingresos.push(new Ingreso(descripcion, valor));
+            totalIngresos = 0;
+            for (let ingreso of ingresos) {
+                totalIngresos += ingreso.valor;
+            }
+            cargarCabecero();
+            cargarIngresos();
+        }
+    }
+}
+
+cargarIngresos();
 cargarEgresos();

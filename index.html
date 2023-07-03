@@ -12,7 +12,7 @@
         alert("“Bienvenido al curso");
     </script> -->
     <!-- <script src="./js/inicio.js"></script> -->
- 
+
     <!-- <script type="text/javascript" src="./js/Dato.js"></script>
     <script type="text/javascript" src="./js/Egreso.js"></script>
     <script type="text/javascript" src="./js/Ingreso.js"></script>
@@ -24,7 +24,7 @@
     <div class="cabecero">
         <div class="presupuesto">
             <div class="presupuesto_titulo">Presupuesto Disponible</div>
-            <div class="presupuesto_valor"  id="presupuesto"></div>
+            <div class="presupuesto_valor" id="presupuesto"></div>
             <div class="presupuesto_ingreso limpiarEstilos">
                 <div class="presupuesto_ingreso--texto">Ingresos</div>
                 <div class="derecha">
@@ -44,25 +44,28 @@
     <!-- <p>Hola mundo desde archivo externo</p>
     <h1>Curso JavaScript</h1> 
     <p>Nuestro primer script en JS</p> -->
-    <form id="forma">
+    <form id="forma" onsubmit="return false">
         <div class="agregar">
             <div clase="agregar_contenedor">
-                <select clase="agregar_tipo" id="tipo">
+                <select clase="agregar_tipo" id="tipo" name="tipo">
                     <option Class="ingreso">+</option>
                     <option Class="egreso">-</option>
                     <!-- name="Agregar Descripción" -->
-                    <input clase="agregar_descripcion" id="descripcion" type="text" placeholder="Agregar Descripción">
-                    <input type="number" class="agregar_valor" placeholder="Valor">
+                    <input clase="agregar_descripcion" id="descripcion" type="text" placeholder="Agregar Descripción" name="descripcion">
+                    <input type="number" class="agregar_valor" placeholder="Valor" name="importe">
                     <!-- clase agregar_btn. Además, dentro del botón, crea un ícono con la etiqueta ion-icon con el nombre checkmark-circle-outline -->
                     <button class="agregar_btn">
                         <ion-button>
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <ion-icon name="checkmark-circle-outline" onclick=agregarDato()></ion-icon>
                         </ion-button>
                     </button>
                 </select>
             </div>
         </div>
     </form>
+
+
+    
     <!-- CONTENEDOR -->
     <div class="contenedor limpiarEstilos">
         <div class="ingreso">
@@ -120,7 +123,7 @@
                     </div>
                 </div> -->
             </div>
-            
+
         </div>
 
         <div class="egreso">
@@ -134,7 +137,7 @@
                         <div class="elemento_eliminar">
                             <button class="elemento_eliminar_btn">
                                 <ion-button>
-                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                    <ion-icon name="close-circle-outline" aria-hidden="true"></ion-icon>
                                 </ion-button>
                             </button>
                         </div>
@@ -148,7 +151,7 @@
                         <div class="elemento_eliminar">
                             <button class="elemento_eliminar_btn">
                                 <ion-button>
-                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                    <ion-icon name="close-circle-outline" aria-hidden="true"></ion-icon>
                                 </ion-button>
                             </button>
                         </div>
@@ -160,8 +163,14 @@
 
     </div>
 
+    
 
-    <script type=" module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    
+
+
+    <!-- <script type=" module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script> -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <script type="text/javascript" src="./js/Dato.js"></script>
     <script type="text/javascript" src="./js/Egreso.js"></script>
