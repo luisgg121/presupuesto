@@ -3,8 +3,8 @@ const ingresos = [
     new Ingreso('Venta auto', 5000)
 ];
 
-console.log(ingresos[0].descripcion);
-console.log(ingresos[1].descripcion);
+// console.log=ingresos[0].descripcion;
+// console.log=ingresos[1].descripcion;
 
 const egresos = [
     new Egreso('Renta', 4000),
@@ -23,9 +23,9 @@ for (let egreso of egresos) {
 
 let porcentajeEgreso = totalEgresos / totalIngresos;
 
-console.log(totalIngresos);
-console.log(totalEgresos);
-console.log(porcentajeEgreso);
+// console.log=totalIngresos;
+// console.log=totalEgresos;
+// console.log=porcentajeEgreso;
 
 /* var egresos = [{
     concepto: "Renta",
@@ -56,11 +56,6 @@ function cargarCabecero() {
     document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos);
     document.getElementById("egresos").innerHTML = formatoMoneda(totalEgresos);
-
-    // console.log(presupuesto);
-    // console.log(porcentajeEgreso);
-    // console.log(totalIngresos());
-    // console.log(totalEgresos());
 };
 
 
@@ -116,7 +111,7 @@ const cargarEgresos = () => {
         const egresoHTML = crearEgresoHTML(egreso);
         egresosHTML += egresoHTML;
     }
-    console.log(egresosHTML);
+    // console.log=egresosHTML;
     document.getElementById("lista-egresos").innerHTML = egresosHTML;
 };
 
@@ -139,11 +134,11 @@ const cargarEgresos = () => {
 // `;
 
 const crearIngresoHTML = (ingreso) => {
-    console.log(ingreso.descripcion + " " + ingreso.valor);
     let ingresoHTML = `
       <div class="elemento limpiarEstilos">
-        <div class="elemento-descripcion">${ingreso.descripcion}</div>
-        <div class="derecha limpiarEstilos">
+       <div class="derecha">
+       <div class="elemento-descripcion">${ingreso.descripcion}</div>
+        <div class="limpiarEstilos">
           <div class="elemento-valor">+ ${formatoMoneda(ingreso.valor)}</div>
           <div class="elemento-eliminar">
             <button class="elemento-eliminar--btn">
@@ -153,14 +148,14 @@ const crearIngresoHTML = (ingreso) => {
              </button>
           </div>
         </div>
+        </div>
       </div>
     `;
-    console.log(ingresoHTML);
     return ingresoHTML;
 };
 
 const crearEgresoHTML = (egreso) => {
-    console.log(egreso.descripcion + " " + egreso.valor);
+    // console.log=egreso.descripcion + " " + egreso.valor;
     let egresoHTML = `
       <div class="elemento limpiarEstilos">
         <div class="elemento-descripcion">${egreso.descripcion}</div>
@@ -177,7 +172,6 @@ const crearEgresoHTML = (egreso) => {
         </div>
       </div>
     `;
-    console.log(egresoHTML);
     return egresoHTML;
 };
 
@@ -188,7 +182,7 @@ const eliminarIngreso = (id) => {
     for (let ingreso of ingresos) {
         totalIngresos += ingreso.valor;
     }
-    console.log("Total de ingresos = " + totalIngresos);
+    // console.log="Total de ingresos = " + totalIngresos;
     cargarCabecero();
     cargarIngresos();
 };
@@ -200,18 +194,17 @@ const eliminarEgreso = (id) => {
     for (let egreso of egresos) {
         totalEgresos += egreso.valor;
     }
-    console.log("Total de egresos = " + totalEgresos);
+    // console.log="Total de egresos = " + totalEgresos;
     cargarCabecero();
     cargarEgresos();
 };
 
 const agregarDato = () => {
-    console.log="ENTRÉ A AGREGAR DATO";
     const forma = document.getElementById('forma');
     const tipo = forma.tipo.value;
     const descripcion = forma.descripcion.value;
-    const valor = forma.importe.value;
-    console.log = "Tipo = " + forma.tipo.value + "Descripción = " + forma.descripcion.value + forma.importe.value;
+    const valor = Number(forma.importe.value);
+    console.log("Tipo = " + typeof (valor));
 
     if (descripcion !== '' && valor !== '') {
         if (tipo === 'ingreso') {

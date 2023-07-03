@@ -7,17 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hola Mundo con JS - Luis de la Garza González</title>
     <link rel=StyleSheet href="./css/estilos.css" type="text/css" media=screen>
-    <!-- <script>
-        alert("Hola mundo con JS");
-        alert("“Bienvenido al curso");
-    </script> -->
-    <!-- <script src="./js/inicio.js"></script> -->
-
-    <!-- <script type="text/javascript" src="./js/Dato.js"></script>
-    <script type="text/javascript" src="./js/Egreso.js"></script>
-    <script type="text/javascript" src="./js/Ingreso.js"></script>
-    <script type="text/javascript" src="./js/app.js"></script> -->
-
 </head>
 
 <body onload="cargarApp()">
@@ -41,31 +30,29 @@
             </div>
         </div>
     </div>
-    <!-- <p>Hola mundo desde archivo externo</p>
-    <h1>Curso JavaScript</h1> 
-    <p>Nuestro primer script en JS</p> -->
     <form id="forma" onsubmit="return false">
         <div class="agregar">
-            <div clase="agregar_contenedor">
-                <select clase="agregar_tipo" id="tipo" name="tipo">
-                    <option Class="ingreso">+</option>
-                    <option Class="egreso">-</option>
-                    <!-- name="Agregar Descripción" -->
-                    <input clase="agregar_descripcion" id="descripcion" type="text" placeholder="Agregar Descripción" name="descripcion">
-                    <input type="number" class="agregar_valor" placeholder="Valor" name="importe">
-                    <!-- clase agregar_btn. Además, dentro del botón, crea un ícono con la etiqueta ion-icon con el nombre checkmark-circle-outline -->
-                    <button class="agregar_btn">
-                        <ion-button>
-                            <ion-icon name="checkmark-circle-outline" onclick=agregarDato()></ion-icon>
-                        </ion-button>
-                    </button>
+            <div class="agregar_contenedor">
+                <select class="agregar_tipo" id="tipo" name="tipo">
+                    <option class="ingreso" value='ingreso'>+</option>
+                    <option class="egreso" value='egreso'>-</option>
                 </select>
+                <!-- name="Agregar Descripción" -->
+                <input class="agregar_descripcion" id="descripcion" type="text" placeholder="Agregar Descripción"
+                    name="descripcion">
+                <input type="number" class="agregar_valor" placeholder="Valor" name="importe">
+                <!-- clase agregar_btn. Además, dentro del botón, crea un ícono con la etiqueta ion-icon con el nombre checkmark-circle-outline -->
+                <button class="agregar_btn">
+                    <ion-button>
+                        <ion-icon name="checkmark-circle-outline" aria-hidden="true" onclick=agregarDato()></ion-icon>
+                    </ion-button>
+                </button>
             </div>
         </div>
     </form>
 
 
-    
+
     <!-- CONTENEDOR -->
     <div class="contenedor limpiarEstilos">
         <div class="ingreso">
@@ -163,9 +150,9 @@
 
     </div>
 
-    
 
-    
+
+
 
 
     <!-- <script type=" module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script> -->
