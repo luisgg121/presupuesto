@@ -9,7 +9,7 @@ const egresos = [
     new Egreso('Ropa', 800)
 ];
 
-var totalIngresos = 0;
+/* var totalIngresos = 0;
 for (let ingreso of ingresos) {
     totalIngresos += ingreso.valor;
 }
@@ -17,15 +17,36 @@ for (let ingreso of ingresos) {
 var totalEgresos = 0;
 for (let egreso of egresos) {
     totalEgresos += egreso.valor;
-}
+} */
 
-var porcentajeEgreso = totalEgresos / totalIngresos;
+var porcentajeEgreso = 0.00;
+// var porcentajeEgreso = totalEgresos / totalIngresos;
+
+const total_Ingresos = (ingresos) => {
+    let totalIngreso = 0;
+    for (let ingreso of ingresos) {
+        totalIngreso += ingreso.valor;
+    }
+    return totalIngreso;
+};
+
+const total_Egresos = (egresos) => {
+    let totalEgreso = 0;
+    for (let egreso of egresos) {
+        totalEgreso += egreso.valor;
+    }
+    return totalEgreso;
+};
 
 function cargarApp() {
     cargarCabecero();
 }
 
 function cargarCabecero() {
+    let totalIngresos = 0;
+    let totalEgresos = 0;
+    totalIngresos = total_Ingresos(ingresos);
+    totalEgresos = total_Egresos(egresos);
     const presupuesto = totalIngresos - totalEgresos;
     const porcentajeEgreso = totalEgresos / totalIngresos;
     document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
@@ -35,23 +56,9 @@ function cargarCabecero() {
 };
 
 
-/*
-const totalIngresos = (ingresos) => {
-    let totalIngreso = 0;
-    for (let ingreso of ingresos) {
-        totalIngreso += ingreso;
-    }
-    return totalIngreso;
-};
 
-const totalEgresos = () => {
-    let totalEgreso = 0;
-    for (let egreso of egresos) {
-        totalEgreso += egreso;
-    }
-    return totalEgreso;
-};
- */
+
+
 const formatoMoneda = (valor) => {
     return valor.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: 2 });
 };
@@ -113,6 +120,7 @@ const crearIngresoHTML = (ingreso) => {
 };
 
 const crearEgresoHTML = (egreso) => {
+    porcentajeEgreso = egreso.valor / total_Ingresos(ingresos);
     let egresoHTML = `
       <div class="elemento limpiarEstilos">
         <div class="elemento_descripcion">${egreso.descripcion}</div>
@@ -161,8 +169,7 @@ const agregarDato = () => {
     const tipo = forma.tipo.value;
     const descripcion = forma.descripcion.value;
     const valor = Number(forma.importe.value);
-    console.log("Tipo = " + typeof (valor));
-
+    // console.log("Tipo = " + typeof (valor));
     if (descripcion !== '' && valor !== '') {
         if (tipo === 'ingreso') {
             ingresos.push(new Ingreso(descripcion, valor));
@@ -172,6 +179,7 @@ const agregarDato = () => {
             }
             cargarCabecero();
             cargarIngresos();
+            cargarEgresos();
         }
         else {
             egresos.push(new Egreso(descripcion, valor));
@@ -183,6 +191,7 @@ const agregarDato = () => {
             cargarEgresos();
         }
     }
+    document.getElementById("forma").reset();
 }
 
 cargarIngresos();
