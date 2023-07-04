@@ -20,6 +20,9 @@ for (let egreso of egresos) {
 } */
 
 var porcentajeEgreso = 0.00;
+var totalIngresos = 0.00;
+var totalEgresos = 0.00;
+
 // var porcentajeEgreso = totalEgresos / totalIngresos;
 
 const total_Ingresos = (ingresos) => {
@@ -54,10 +57,6 @@ function cargarCabecero() {
     document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos);
     document.getElementById("egresos").innerHTML = formatoMoneda(totalEgresos);
 };
-
-
-
-
 
 const formatoMoneda = (valor) => {
     return valor.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: 2 });
@@ -150,6 +149,7 @@ const eliminarIngreso = (id) => {
     porcentajeEgreso = totalEgresos / totalIngresos;    
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 };
 
 const eliminarEgreso = (id) => {
