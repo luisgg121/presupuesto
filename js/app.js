@@ -3,47 +3,23 @@ const ingresos = [
     new Ingreso('Venta auto', 5000)
 ];
 
-// console.log=ingresos[0].descripcion;
-// console.log=ingresos[1].descripcion;
 
 const egresos = [
     new Egreso('Renta', 4000),
     new Egreso('Ropa', 800)
 ];
 
-let totalIngresos = 0;
+var totalIngresos = 0;
 for (let ingreso of ingresos) {
     totalIngresos += ingreso.valor;
 }
 
-let totalEgresos = 0;
+var totalEgresos = 0;
 for (let egreso of egresos) {
     totalEgresos += egreso.valor;
 }
 
-let porcentajeEgreso = totalEgresos / totalIngresos;
-
-// console.log=totalIngresos;
-// console.log=totalEgresos;
-// console.log=porcentajeEgreso;
-
-/* var egresos = [{
-    concepto: "Renta",
-    importe: 900
-}, {
-    concepto: "Ropa",
-    importe: 400
-}];
-
-var ingresos = [{
-    concepto: "Quincena",
-    importe: 9000
-}, {
-    concepto: "Venta",
-    importe: 400
-}];
-
-*/
+var porcentajeEgreso = totalEgresos / totalIngresos;
 
 function cargarApp() {
     cargarCabecero();
@@ -51,7 +27,7 @@ function cargarApp() {
 
 function cargarCabecero() {
     const presupuesto = totalIngresos - totalEgresos;
-    const porcentajeEgreso = totalEgresos / (totalIngresos + totalEgresos);
+    const porcentajeEgreso = totalEgresos / totalIngresos;
     document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
     document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos);
@@ -111,43 +87,25 @@ const cargarEgresos = () => {
         const egresoHTML = crearEgresoHTML(egreso);
         egresosHTML += egresoHTML;
     }
-    // console.log=egresosHTML;
-    document.getElementById("lista-egresos").innerHTML = egresosHTML;
+     document.getElementById("lista-egresos").innerHTML = egresosHTML;
 };
 
 // En lugar de escribir una cadena en el div elemento-descripcion, toma el
 // contenido de ingreso.descripcion
-// const crearIngresoHTML = (ingreso) => {
-//     let ingresoHTML=document.getElementById("lista-ingresos").innerHTML();
-
-//     document.getElementsByClassName("elemento-descripcion");
-
-//     return ingresoHTML;
-// }
-
-// let ingresoHTML = `
-//   <div>
-//     <div>${ingreso.descripcion}</div>
-//     <div>${formatoMoneda(ingreso.valor)}</div>
-//     <ion-icon name="close-circle-outline" onclick="eliminarIngreso(${ingreso.id})"></ion-icon>
-//   </div>
-// `;
 
 const crearIngresoHTML = (ingreso) => {
     let ingresoHTML = `
       <div class="elemento limpiarEstilos">
-       <div class="derecha">
-       <div class="elemento-descripcion">${ingreso.descripcion}</div>
-        <div class="limpiarEstilos">
-          <div class="elemento-valor">+ ${formatoMoneda(ingreso.valor)}</div>
-          <div class="elemento-eliminar">
-            <button class="elemento-eliminar--btn">
+       <div class="elemento_descripcion">${ingreso.descripcion}</div>
+        <div class="derecha limpiarEstilos">
+          <div class="elemento_valor">+ ${formatoMoneda(ingreso.valor)}</div>
+          <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn">
              <ion-button>
               <ion-icon name="close-circle-outline" onclick='eliminarIngreso(${ingreso.id})'></ion-icon>
               </ion-button>
              </button>
           </div>
-        </div>
         </div>
       </div>
     `;
@@ -155,15 +113,14 @@ const crearIngresoHTML = (ingreso) => {
 };
 
 const crearEgresoHTML = (egreso) => {
-    // console.log=egreso.descripcion + " " + egreso.valor;
     let egresoHTML = `
       <div class="elemento limpiarEstilos">
-        <div class="elemento-descripcion">${egreso.descripcion}</div>
+        <div class="elemento_descripcion">${egreso.descripcion}</div>
         <div class="derecha limpiarEstilos">
-          <div class="elemento-valor">- ${formatoMoneda(egreso.valor)}</div>
+          <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
           <div class="elemento_porcentaje">${formatoPorcentaje(porcentajeEgreso)}</div>
-          <div class="elemento-eliminar">
-            <button class="elemento-eliminar--btn">
+          <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn">
              <ion-button>
               <ion-icon name="close-circle-outline" aria-hidden="true" onclick='eliminarEgreso(${egreso.id})'></ion-icon>
               </ion-button>
@@ -182,7 +139,7 @@ const eliminarIngreso = (id) => {
     for (let ingreso of ingresos) {
         totalIngresos += ingreso.valor;
     }
-    // console.log="Total de ingresos = " + totalIngresos;
+    porcentajeEgreso = totalEgresos / totalIngresos;    
     cargarCabecero();
     cargarIngresos();
 };
@@ -194,7 +151,7 @@ const eliminarEgreso = (id) => {
     for (let egreso of egresos) {
         totalEgresos += egreso.valor;
     }
-    // console.log="Total de egresos = " + totalEgresos;
+    porcentajeEgreso = totalEgresos / totalIngresos;
     cargarCabecero();
     cargarEgresos();
 };
@@ -215,6 +172,15 @@ const agregarDato = () => {
             }
             cargarCabecero();
             cargarIngresos();
+        }
+        else {
+            egresos.push(new Egreso(descripcion, valor));
+            totalEgresos = 0;
+            for (let egreso of egresos) {
+                totalEgresos += egreso.valor;
+            }
+            cargarCabecero();
+            cargarEgresos();
         }
     }
 }
