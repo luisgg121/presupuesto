@@ -140,7 +140,7 @@ const crearEgresoHTML = (egreso) => {
 };
 
 const eliminarIngreso = (id) => {
-    const indiceEliminar = egresos.findIndex((ingreso) => ingreso.id === id);
+    const indiceEliminar = ingresos.findIndex((ingreso) => ingreso.id === id);
     ingresos.splice(indiceEliminar, 1);
     totalIngresos = 0;
     for (let ingreso of ingresos) {
