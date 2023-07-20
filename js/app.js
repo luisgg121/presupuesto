@@ -168,6 +168,9 @@ const agregarDato = () => {
     const forma = document.getElementById('forma');
     const tipo = forma.tipo.value;
     const descripcion = forma.descripcion.value;
+    if (descripcion == "") {
+        alert("Favor de indicar la descripción");
+    }
     const valor = Number(forma.importe.value);
     // console.log("Tipo = " + typeof (valor));
     if (descripcion !== '' && valor !== '') {
